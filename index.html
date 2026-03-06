@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>臺北明治橋</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif;
+  font-weight:300;      /* 內文維持細 */
+  background:#000;
+}
+
+/* 背景 */
+.hero{
+  position: relative;
+  min-height: 100vh;
+  padding: 24px 16px 44px;
+
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.12), rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.48)),
+    url("images/bg.jpg");
+
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+.hero-content{
+  position:relative;
+  max-width:900px;
+  margin:0 auto;
+  color:#fff;
+}
+
+/* 標題：白色 + 粗一點 */
+.hero-title{
+  text-align:center;
+  font-size:34px;
+  font-weight:600;
+  margin:8px 0 18px;
+  letter-spacing:.5px;
+  color:#fff;
+}
+
+/* 影片 */
+.video{
+  width:100%;
+  border-radius:16px;
+  background:#000;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+}
+
+/* 影片容器（放全螢幕按鈕用） */
+.video-box{
+  position:relative;
+}
+
+/* 全螢幕按鈕 */
+.fs-btn{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  background: rgba(0,0,0,.45);
+  color:#fff;
+  font-size:14px;
+  cursor:pointer;
+}
+.fs-btn:active{ transform: scale(.98); }
+
+/* 文字區：半透明玻璃感 */
+.hero-text{
+  margin-top:18px;
+  font-size:20px;
+  line-height:1.9;
+  padding:18px;
+  border-radius:16px;
+
+  background:rgba(0,0,0,.55);           /* 半透明 */
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* 段落：統一不要粗 + 首行縮排 */
+.hero-text p{
+  text-indent:2em;
+  margin:12px 0;
+  font-weight:300;
+}
+
+@media(min-width:768px){
+  .hero-title{font-size:44px;}
+  .hero-text{font-size:22px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+
+    <h2 class="hero-title">臺北明治橋</h2>
+
+    <!-- ✅ 影片 + 全螢幕按鈕 -->
+    <div class="video-box">
+      <video id="mainVideo" class="video" controls preload="metadata">
+        <source src="videos/demo.mp4" type="video/mp4">
+        你的瀏覽器不支援影片播放
+      </video>
+
+      <button class="fs-btn" type="button" onclick="goFullscreen()">全螢幕</button>
+    </div>
+
+    <div class="hero-text">
+      <p>
+        1898年，臺灣總督兒玉源太郎與民政長官後藤新平剛上任，兩人希望在視野開闊的地方蓋神社。經過幾次勘查後，覺得劍潭山山勢高聳，能俯瞰整個臺北地區。於是先後在劍潭山蓋了第一和第二代臺灣神社，神社與臺北市區隔著基隆河俯首相望。
+      </p>
+
+      <p>
+        為了興建日本皇族至臺灣參拜臺灣神社時所走的道路，也就是敕使街道，1901年，又於基隆河上建立第一代明治橋。
+      </p>
+
+      <p>
+        直到1930年代，橋體老舊不堪，他們在下游處興建了第二代明治橋。稍微觀察就能發現第一代與第二代橋梁外觀非常不同：第一代帶有機械風格，第二代則呈現歐式風格。橋寬約17公尺，因此大型車輛與行人都能順利通行。
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function goFullscreen(){
+    const v = document.getElementById('mainVideo');
+
+    // iPhone/Safari（部分版本）可能需要這個
+    if (v && v.webkitEnterFullscreen) {
+      try { v.webkitEnterFullscreen(); return; } catch(e) {}
+    }
+
+    // 桌機/Android 瀏覽器
+    const req = v.requestFullscreen || v.webkitRequestFullscreen || v.mozRequestFullScreen || v.msRequestFullscreen;
+    if (req) req.call(v);
+  }
+</script>
+
+</body>
+</html>
